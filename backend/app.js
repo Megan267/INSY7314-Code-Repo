@@ -1,5 +1,7 @@
 // call in required modules at the top of the file
 const express = require("express");
+// cors - resource sharing library - we use it to tell our backend which frontends may talk to it
+const cors = require("cors");
 
 const database = require("./middleware/dbMiddleware.js");
 
@@ -12,6 +14,14 @@ const app = express();
 
 // this is where we call in middleware - between the declaration of the app, and the start point
 app.use(express.json()); // express.json allows us to use json in requests and responses
+//cors allows us 
+const corsOptions = {
+    origin: "http://localhost:5173",
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 //when calling in our routes - we need to ensure that we do so AFTER we call in our middleware
 app.use("/api/home", homeRoutes); 

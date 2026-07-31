@@ -21,7 +21,7 @@ const createBook = async (req, res) => {
 const getAllBooks = async (req, res) => {
     try {
         //get ALL books using the model (which is our link to the database)
-        const books = await Book.Find();
+        const books = await Book.find();
         //convert the array to json, and send to the user
         return res.status(200).json(books);
     } catch (error) {
